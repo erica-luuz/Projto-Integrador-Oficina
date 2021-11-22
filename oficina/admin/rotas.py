@@ -38,6 +38,6 @@ def login():
             flash(f'Olá {form.email.data} voce está logado', 'success')
             return redirect(request.args.get('next')or url_for ('admin'))
         else:
-            flash('NÃO FOI POSSIVEL FAZER LOGIN.')
+            flash('NÃO FOI POSSIVEL FAZER LOGIN.','danger')
     return render_template ('admin/login.html', form=form, title='Página Login')
    
