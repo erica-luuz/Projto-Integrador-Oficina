@@ -2,6 +2,7 @@
 {% extends "layouts.html" %}
 {% block body %}
 <div class="container">
+    {% include '_messages.html' %}
     <div class="text-center h1 text-success"> Registro de Usuários </div>
     {% from "_formhelpers.html" import render_field %}
     <form method="post" enctype="multipart/form-data">

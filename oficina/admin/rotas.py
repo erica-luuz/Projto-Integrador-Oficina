@@ -21,7 +21,7 @@ def registrar():
         user = User(name=form.name.data, username=form.username.data, email=form.email.data,
                     password=hash_password)
         db.session.add(user)
-        db.session.commit()   #adicionado para salvar no bd
+        db.session.commit  #adicionado para salvar no bd       
         flash(f'Obrigado {form.name.data} por registrar', 'success')
 
         return redirect(url_for('login'))
