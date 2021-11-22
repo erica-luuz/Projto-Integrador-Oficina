@@ -3,15 +3,13 @@ from flask import render_template, session, request, redirect, url_for, flash
 from oficina import app, db, bcrypt
 from .forms import RegistrationForm, LoginFormulario 
 from .models import User
-import os
-
-
 
 # rota da Home Pagina Administrativa
-@app.route('/')
-def home():
-    return render_template ('admin/index.html', title='Página Administrativa')
-
+@app.route('/admin')
+def admin():
+        if 'email' not in session:
+            return redirect(url_for('login'))
+        return render_template ('admin/index.html', title='Página Administrativa')
 
 # rota do cadastro de usuario
 @app.route('/registrar', methods=['GET', 'POST'])
@@ -26,12 +24,20 @@ def registrar():
         db.session.commit()   #adicionado para salvar no bd
         flash(f'Obrigado {form.name.data} por registrar', 'success')
 
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('admin/registrar.html', form=form, title="Registrar Usuários")
 
     # Rota do Formulario de Login
 @app.route('/login',methods=['Get','POST'])
 def login():
     form=LoginFormulario(request.form)
+    if request.method =="POST" and form.validate():
+        user= User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            session['email'] = form.email.data
+            flash(f'Olá {form.email.data} voce está logado', 'success')
+            return redirect(request.args.get('next')or url_for ('admin'))
+        else:
+            flash('NÃO FOI POSSIVEL FAZER LOGIN.')
     return render_template ('admin/login.html', form=form, title='Página Login')
    
