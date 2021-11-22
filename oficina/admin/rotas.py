@@ -23,15 +23,15 @@ def registrar():
         user = User(name=form.name.data, username=form.username.data, email=form.email.data,
                     password=hash_password)
         db.session.add(user)
-        db.session.commit   #adicionado para salvar no bd
+        db.session.commit()   #adicionado para salvar no bd
         flash(f'Obrigado {form.name.data} por registrar', 'success')
 
         return redirect(url_for('home'))
-    return render_template('admin/Registrar.html', form=form, title="Registrar Usuários")
+    return render_template('admin/registrar.html', form=form, title="Registrar Usuários")
 
     # Rota do Formulario de Login
 @app.route('/login',methods=['Get','POST'])
 def login():
     form=LoginFormulario(request.form)
-    return render_template ('admin/Login.html', form=form, title='Página Login')
+    return render_template ('admin/login.html', form=form, title='Página Login')
    
