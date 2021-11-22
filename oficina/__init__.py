@@ -13,5 +13,6 @@ bcrypt = Bcrypt(app)
 
 
 from oficina.admin import rotas
+from oficina.produtos import rotas
 
 # Senha secreta, qualquer caracteres ex dsfgedbhef1234.
