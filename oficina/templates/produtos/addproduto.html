@@ -1,0 +1,32 @@
+{% block 'layouts.html' %}
+
+
+{% block body %}
+
+{% include '_messages.html' %}
+
+<div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2 class="text-center bg-success p-2">"Adicionar Produtos</h2>,
+        {% from "__formhelpers.html" import render_field %}
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            {{ render_field(form.name, class="form-control", placeholder="Nome do Produto")}}
+
+            {{ render_field(form.order_number, class="form-control", placeholder="Num Pedido")}}
+            {{ render_field(form.unitprice, class="form-control", placeholder="Preço Unitário")}}
+            {{ render_field(form.total_price, class="form-control", placeholder="Preço Total")}}
+            {{ render_field(form.date_entry, class="form-control", placeholder="Data Entrada")}}
+            {{ render_field(form.date_out, class="form-control", placeholder="Data Saida")}}
+            {{ render_field(form.quantity, class="form-control", placeholder="Quantidade")}}
+            {{ render_field(form.description, class="form-control", placeholder="Descrição do Produto", rows="10")}}
+            {{ render_field(form.colors, class="form-control", placeholder="Cor")}}
+            {{ render_field(form.size, class="form-control", placeholder="Tamanho")}}
+
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}

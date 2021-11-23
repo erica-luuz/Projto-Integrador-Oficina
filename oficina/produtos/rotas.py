@@ -1,5 +1,5 @@
 from flask import redirect, render_template, url_for, flash, request
-
+from .forms import Addprodutos
 from oficina import db,  app
 from .models import Fornecedor, Categoria
 # rotas da pag de cadastro de fornecedor.
@@ -29,3 +29,10 @@ def addcat():
         db.session.commit
         return redirect(url_for('addcat'))
     return render_template('/produtos/addfornecedor.html')
+
+# rotas da pagina de cadastro de produtos
+@app.route('/addproduto', methods=['GET', 'POST'])
+def addproduto():
+    form = addproduto(request.form)
+    db.session.commit
+    return render_template('/produtos/addproduto.html', title="Cadastrar Produtos", form=form)
