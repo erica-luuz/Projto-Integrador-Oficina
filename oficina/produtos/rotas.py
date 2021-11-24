@@ -33,6 +33,7 @@ def addcat():
 # rotas da pagina de cadastro de produtos
 @app.route('/addproduto', methods=['GET', 'POST'])
 def addproduto():
-    form = addproduto(request.form)
-    db.session.commit
-    return render_template('/produtos/addproduto.html', title="Cadastrar Produtos", form=form)
+    fornecedores = Fornecedor.query.all()
+    categorias = Categoria.query.all()
+    form = Addprodutos(request.form)
+    return render_template('produtos/addproduto.html', title="Cadastrar Produtos", form=form, fornecedores=fornecedores, categorias=categorias) 

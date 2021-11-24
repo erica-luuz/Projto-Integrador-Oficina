@@ -1,4 +1,4 @@
-{% block 'layouts.html' %}
+{% extends 'layouts.html' %}
 
 
 {% block body %}
@@ -6,27 +6,54 @@
 {% include '_messages.html' %}
 
 <div class="container">
+    <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <h2 class="text-center bg-success p-2">"Adicionar Produtos</h2>,
-        {% from "__formhelpers.html" import render_field %}
+        <h2 class="text-center">"Adicionar Produtos"</h2>,
+        {% from "_formhelpers.html" import render_field %}
         <form action="" method="POST" enctype="multipart/form-data">
 
             {{ render_field(form.name, class="form-control", placeholder="Nome do Produto")}}
-
             {{ render_field(form.order_number, class="form-control", placeholder="Num Pedido")}}
             {{ render_field(form.unitprice, class="form-control", placeholder="Preço Unitário")}}
             {{ render_field(form.total_price, class="form-control", placeholder="Preço Total")}}
             {{ render_field(form.date_entry, class="form-control", placeholder="Data Entrada")}}
             {{ render_field(form.date_out, class="form-control", placeholder="Data Saida")}}
             {{ render_field(form.quantity, class="form-control", placeholder="Quantidade")}}
-            {{ render_field(form.description, class="form-control", placeholder="Descrição do Produto", rows="10")}}
             {{ render_field(form.colors, class="form-control", placeholder="Cor")}}
             {{ render_field(form.size, class="form-control", placeholder="Tamanho")}}
+            {{ render_field(form.description, class="form-control", placeholder="Descrição do Produto", rows="10")}}
+             
 
+            <label for="fornecedor">"Adicionar o Fornecedor</label>
+            <select name="fornecedor" id="fornecedor" class="form-control" required>
+                <option value="">Selecione uma marca</option>
+                {% for fornecedor in fornecedores %}
+                <option value="{fornecedor.id">{{fornecedor.name}}</option>  
+                {% endfor %}
+            </select>
+
+            <label for="categoria">"Adicionar uma Categoria</label>
+            <select name="categoria" id="categoria" class="form-control" required>
+                <option value="">Selecione uma Categoria</option>
+                {% for categoria in categorias %}
+                <option value="categoria.id">{{categoria.name}}</option>
+                {% endfor %}
+            </select>
+
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">{{ render_field(form.image_1, class="form-control")}}</div>
+                    <div class="col-md-4">{{ render_field(form.image_2, class="form-control")}}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-info mt-4">Cadastrar</button>
         </form>
     </div>
     <div class="col-md-2"></div>
 </div>
+</div>
 
 {% endblock %}
+
