@@ -8,7 +8,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///minhaoficina.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///minha oficina.db'
 app.config['SECRET_KEY']='dsfgedbhef1234'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

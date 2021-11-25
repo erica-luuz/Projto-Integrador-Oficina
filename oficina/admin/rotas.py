@@ -1,5 +1,5 @@
 from flask import render_template, session, request, redirect, url_for, flash
-
+from oficina.produtos.models import Addproduto
 from oficina import app, db, bcrypt
 from .forms import RegistrationForm, LoginFormulario 
 from .models import User
@@ -8,8 +8,10 @@ from .models import User
 @app.route('/admin')
 def admin():
         if 'email' not in session:
+            flash(f'Favor fazer seu login primeiro', 'success')
             return redirect(url_for('login'))
-        return render_template ('admin/index.html', title='Página Administrativa')
+        produtos = Addproduto.query.all()
+        return render_template ('admin/index.html', title="Página Administrativa", produtos=produtos)
 
 # rota do cadastro de usuario
 @app.route('/registrar', methods=['GET', 'POST'])
@@ -21,7 +23,7 @@ def registrar():
         user = User(name=form.name.data, username=form.username.data, email=form.email.data,
                     password=hash_password)
         db.session.add(user)
-        db.session.commit  #adicionado para salvar no bd       
+        db.session.commit()  #adicionado para salvar no bd       
         flash(f'Obrigado {form.name.data} por registrar', 'success')
 
         return redirect(url_for('login'))

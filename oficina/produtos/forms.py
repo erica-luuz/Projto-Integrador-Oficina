@@ -12,8 +12,7 @@ class Addprodutos(Form):
     colors = TextAreaField('Cor :', [validators.DataRequired()])
     size = StringField('Tamanho :', [validators.DataRequired()])
     description = TextAreaField('Descrição :', [validators.DataRequired()])
-    date_out = DateTimeField('Data Saida:', [validators.DataRequired()])
 
 
     image_1 = FileField('Image 1 :', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'gif', 'jpeg'])])
-    image_2 = FileField('Image 2 :', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'gif', 'jpeg'])])
+

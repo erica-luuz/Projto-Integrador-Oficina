@@ -10,12 +10,11 @@ class Addproduto(db.Model):
     order_number = db.Column(db.Numeric(10), nullable=False)
     unitprice = db.Column(db.Numeric(10,2), nullable=False)
     total_price = db.Column(db.Numeric(10,2), nullable=False)
-    Quantity = db.Column(db.Integer, nullable=False)
-    Colors = db.Column(db.Text, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    colors = db.Column(db.Text, nullable=False)
     size = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80), nullable=False)
     pub_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
-    date_out = db.Column(db.DateTime, nullable=False)
 
     fornecedor_id = db.Column(db.Integer, db.ForeignKey('fornecedor.id'),nullable=False)
     fornecedor = db.relationship('Fornecedor', backref=db.backref('fornecedores', lazy=True))
@@ -24,7 +23,6 @@ class Addproduto(db.Model):
     categoria = db.relationship('Categoria', backref=db.backref('categorias', lazy=True))
 
     image_1 = db.Column(db.String(150), nullable=False, default='image.jpg')
-    image_2 = db.Column(db.String(150), nullable=False, default='image.jpg')
 
 
     def __repr__(self):
