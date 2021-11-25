@@ -43,14 +43,14 @@
 <div class="container">
     <table class="table table-sm">
        <thead>
-           <th>Serial :</th>
-           <th>Produto :</th>
-           <th>Preço_Unitario :</th>
-           <th>Preço_Total :</th>
-           <th>Fornecedor :</th>
-           <th>Foto :</th>
-           <th>Editar :</th>
-           <th>Deletar :</th>
+           <th>Serial</th>
+           <th>Produto</th>
+           <th>Preço_Unitario</th>
+           <th>Preço_Total</th>
+           <th>Fornecedor</th>
+           <th>Foto</th>
+           <th>Editar</th>
+           <th>Deletar</th>
        </thead>
 
        <tbody>
@@ -62,15 +62,13 @@
               <td>{{produto.unit_price}}</td>
               <td>{{produto.total_price}}</td>
               <td>{{produto.fornecedor}}</td>
-              <td>img scr="{{url_for</td>
+              <td><img scr="{{url_for('static', filename='images/' + produto.image_1)}}"></td>
               <td>{{Editar}}</td>
               <td>{{Deletar}}</td>
             </tr>
             {% endfor %}
-      </tbody>
-    </thead>
+        </tbody>
 
     </table>
 </div>
-
 {% endblock %}

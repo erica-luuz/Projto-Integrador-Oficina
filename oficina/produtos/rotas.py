@@ -28,7 +28,7 @@ def addcat():
         cat = Categoria(name=getfornecedor)
         db.session.add(cat)
         flash(f'A Categoria {getfornecedor} foi cadastrada com sucesso', 'success')
-        db.session.commit
+        db.session.commit()
         return redirect(url_for('addcat'))
     return render_template('/produtos/addfornecedor.html')
 
@@ -57,6 +57,6 @@ def addproduto():
         flash(f'Produto {name} foi cadastrada com sucesso', 'success')
         db.session.commit()
         return redirect(url_for('admin'))
-        
-        
+
+
     return render_template('produtos/addproduto.html', title="Cadastrar Produtos", form=form, fornecedores=fornecedores, categorias=categorias) 
